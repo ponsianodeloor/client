@@ -27,6 +27,11 @@ public class PersonRest {
         return personService.getPersonById(id);
     }
 
+    @GetMapping("/person/client/{clientId}")
+    public Person getPersonByClientId(@PathVariable("clientId") String clientId) {
+        return personService.getPersonByClientId(clientId);
+    }
+
     @PostMapping("/person")
     public Person addPerson(@RequestBody Person person) {
         return personService.addPerson(person);

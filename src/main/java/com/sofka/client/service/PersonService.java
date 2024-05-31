@@ -25,6 +25,10 @@ public class PersonService extends CommonApplications {
         return personRepository.findById(id).orElseThrow(() -> new RuntimeException("Persona no encontrada"));
     }
 
+    public Person getPersonByClientId(String clientId) {
+        return personRepository.findByClientId(clientId);
+    }
+
     public Person addPerson(Person person) {
         //validate if the person already exists
         if (personRepository.existsById(person.getIdentification())) {
