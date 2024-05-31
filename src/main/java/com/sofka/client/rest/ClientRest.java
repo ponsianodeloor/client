@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Tag(name = "Client", description = "API para client")
 @RestController
@@ -24,6 +25,11 @@ public class ClientRest {
     @GetMapping("/client/{id}")
     public Client getClientById(@PathVariable("id") String id) {
         return clientService.getClientById(id);
+    }
+
+    @GetMapping("/client/username/{username}")
+    public Optional<Object> getClientByUsername(@PathVariable("username") String username) {
+        return clientService.getClientByUsername(username);
     }
 
     @PostMapping("/client")

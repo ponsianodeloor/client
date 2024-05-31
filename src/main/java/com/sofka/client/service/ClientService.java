@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClientService {
@@ -19,6 +20,14 @@ public class ClientService {
 
     public Client getClientById(String id) {
         return clientRepository.findById(id).orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+    }
+
+    public Optional<Object> getClientByUsername(String username) {
+        try {
+            return clientRepository.findByUsername(username);
+        } catch (Exception e) {
+            throw new RuntimeException("Error al buscar el cliente");
+        }
     }
 
     public Client addClient(Client client) {
