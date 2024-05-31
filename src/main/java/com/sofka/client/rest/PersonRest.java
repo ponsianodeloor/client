@@ -23,7 +23,7 @@ public class PersonRest {
     }
 
     @GetMapping("/person/{id}")
-    public Person getPersonById(String id) {
+    public Person getPersonById(@PathVariable("id") String id) {
         return personService.getPersonById(id);
     }
 
