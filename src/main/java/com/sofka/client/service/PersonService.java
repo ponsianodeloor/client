@@ -42,14 +42,19 @@ public class PersonService extends CommonApplications {
         return personRepository.save(person);
     }
 
-    @PutMapping("/person")
-    public Person updatePerson(@RequestBody Person person) {
-        return personService.updatePerson(person);
+    public Person updatePerson(Person person) {
+        Person personToUpdate = personRepository.findById(person.getId()).orElseThrow(() -> new RuntimeException("Persona no encontrada"));
+        personToUpdate.setIdentification(person.getIdentification());
+        personToUpdate.setName(person.getName());
+        personToUpdate.setLastname(person.getLastname());
+        personToUpdate.setBirthdate(person.getBirthdate());
+        personToUpdate.setAge(calculateAge(person.getBirthdate()));
+        return personRepository.save(personToUpdate);
     }
 
-    @DeleteMapping("/person/{id}")
-    public void deletePerson(@PathVariable("id") String id) {
-        personService.deletePerson(id);
+    public void deletePerson(String id) {
+        personRepository.deleteById(id);
     }
+
 
 }
