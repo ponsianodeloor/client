@@ -42,4 +42,14 @@ public class PersonService extends CommonApplications {
         return personRepository.save(person);
     }
 
+    @PutMapping("/person")
+    public Person updatePerson(@RequestBody Person person) {
+        return personService.updatePerson(person);
+    }
+
+    @DeleteMapping("/person/{id}")
+    public void deletePerson(@PathVariable("id") String id) {
+        personService.deletePerson(id);
+    }
+
 }
